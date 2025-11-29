@@ -1,0 +1,46 @@
+name: Update en-US-en-CA Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fetch new data for en-US
+        run: npm run get:en-US
+
+      - name: Commit en-US data
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/en-US.json
+          COMMIT_MSG="Update en-US data $(date -u +'%Y-%m-%d %H:%M:%S') UTC / $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S') GMT+8"
+          git diff --staged --quiet || git commit -m "$COMMIT_MSG"
+
+      - name: Fetch new data for en-CA
+        run: npm run get:en-CA
+
+      - name: Commit en-CA data
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/en-CA.json
+          COMMIT_MSG="Update en-CA data $(date -u +'%Y-%m-%d %H:%M:%S') UTC / $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S') GMT+8"
+          git diff --staged --quiet || git commit -m "$COMMIT_MSG"
+
+      - name: Push changes
+        run: git push

@@ -1,0 +1,38 @@
+# This is a configuration file for Wrangler, the Cloudflare Workers CLI.
+# For more information on what you can do with this file, see https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "bingwlapi-updater" # The name of your worker
+main = "worker.js"         # The entrypoint for your worker
+compatibility_date = "2023-11-21" # The compatibility date for your worker
+
+# This section defines the cron triggers for the worker.
+# We use a single hourly trigger due to Cloudflare's free plan limits.
+# The worker script itself will determine which locales to fetch based on the current hour.
+[triggers]
+# A single cron trigger that runs at all required UTC times.
+# The worker will determine which locale(s) to process based on the scheduled time.
+# All times are UTC.
+# 00:05 -> en-GB
+# 05:05 -> en-US, en-CA
+# 15:05 -> ja-JP
+# 16:05 -> zh-CN
+# 18:35 -> en-IN
+# 23:05 -> de-DE, fr-FR, it-IT
+crons = [
+  "5 0,5,15,16,23 * * *",
+  "35 18 * * *"
+]
+
+
+# Note: You must configure your GitHub secrets in the Cloudflare dashboard under:
+# Your Worker -> Settings -> Variables -> Environment Variables -> Edit variables -> Secrets
+# Required secrets:
+# GITHUB_TOKEN - Your GitHub Personal Access Token with repo scope
+# GITHUB_USER  - Your GitHub username (e.g., "haiyewei")
+# GITHUB_REPO  - Your GitHub repository name (e.g., "bingwlapi")
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true

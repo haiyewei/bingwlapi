@@ -1,0 +1,34 @@
+{
+  "name": "bingwlapi",
+  "version": "1.0.0",
+  "description": "This is an API for retrieving Bing's daily wallpaper information. You can customize the returned data by providing different URL query parameters.",
+  "main": "index.js",
+  "devDependencies": {
+    "prettier": "3.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fetch:all": "node api-get/regions.js && npx prettier --write ./data/*.json",
+    "get:en-US": "node -e \"require('./api-get/api')('en-US')\" && npx prettier --write ./data/en-US.json",
+    "get:zh-CN": "node -e \"require('./api-get/api')('zh-CN')\" && npx prettier --write ./data/zh-CN.json",
+    "get:ja-JP": "node -e \"require('./api-get/api')('ja-JP')\" && npx prettier --write ./data/ja-JP.json",
+    "get:en-GB": "node -e \"require('./api-get/api')('en-GB')\" && npx prettier --write ./data/en-GB.json",
+    "get:fr-FR": "node -e \"require('./api-get/api')('fr-FR')\" && npx prettier --write ./data/fr-FR.json",
+    "get:de-DE": "node -e \"require('./api-get/api')('de-DE')\" && npx prettier --write ./data/de-DE.json",
+    "get:en-IN": "node -e \"require('./api-get/api')('en-IN')\" && npx prettier --write ./data/en-IN.json",
+    "get:en-CA": "node -e \"require('./api-get/api')('en-CA')\" && npx prettier --write ./data/en-CA.json",
+    "get:it-IT": "node -e \"require('./api-get/api')('it-IT')\" && npx prettier --write ./data/it-IT.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haiyewei/bingwlapi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/haiyewei/bingwlapi/issues"
+  },
+  "homepage": "https://github.com/haiyewei/bingwlapi#readme"
+}
