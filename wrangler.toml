@@ -16,9 +16,6 @@ GITHUB_REPONAME = "bingwlapi"
 [triggers]
 crons = ["35 18 * * *", "1 0,5,15,16,23 * * *"]
 
-[log]
-logpush = true
-
 [observability]
 enabled = false
 head_sampling_rate = 1
