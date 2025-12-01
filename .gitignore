@@ -1,5 +1,16 @@
 # Dependencies
 /node_modules
 
+# Build output
+/dist
+
+# Cloudflare Workers
+.wrangler/
+.dev.vars
+
+# Environment variables
+.env
+.env.local
+
 # Data files
 /dev

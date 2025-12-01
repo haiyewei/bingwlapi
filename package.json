@@ -4,20 +4,30 @@
   "description": "This is an API for retrieving Bing's daily wallpaper information. You can customize the returned data by providing different URL query parameters.",
   "main": "index.js",
   "devDependencies": {
-    "prettier": "3.7.2"
+    "prettier": "3.7.2",
+    "sass": "^1.94.2",
+    "vite": "^7.2.6"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy --config wrangler.toml",
+    "format": "npx prettier --write",
+    "format:js": "npx prettier --write ./src/**/*.js",
+    "format:css": "npx prettier --write ./src/**/*.scss",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fetch:all": "node api-get/regions.js && npx prettier --write ./data/*.json",
-    "get:en-US": "node -e \"require('./api-get/api')('en-US')\" && npx prettier --write ./data/en-US.json",
-    "get:zh-CN": "node -e \"require('./api-get/api')('zh-CN')\" && npx prettier --write ./data/zh-CN.json",
-    "get:ja-JP": "node -e \"require('./api-get/api')('ja-JP')\" && npx prettier --write ./data/ja-JP.json",
-    "get:en-GB": "node -e \"require('./api-get/api')('en-GB')\" && npx prettier --write ./data/en-GB.json",
-    "get:fr-FR": "node -e \"require('./api-get/api')('fr-FR')\" && npx prettier --write ./data/fr-FR.json",
-    "get:de-DE": "node -e \"require('./api-get/api')('de-DE')\" && npx prettier --write ./data/de-DE.json",
-    "get:en-IN": "node -e \"require('./api-get/api')('en-IN')\" && npx prettier --write ./data/en-IN.json",
-    "get:en-CA": "node -e \"require('./api-get/api')('en-CA')\" && npx prettier --write ./data/en-CA.json",
-    "get:it-IT": "node -e \"require('./api-get/api')('it-IT')\" && npx prettier --write ./data/it-IT.json"
+    "fetch:all": "node scripts/fetch-regions.js && npm run format ./data/*.json",
+    "get:en-US": "node -e \"require('./scripts/fetch-api')('en-US')\" && npm run format ./data/en-US.json",
+    "get:zh-CN": "node -e \"require('./scripts/fetch-api')('zh-CN')\" && npm run format ./data/zh-CN.json",
+    "get:ja-JP": "node -e \"require('./scripts/fetch-api')('ja-JP')\" && npm run format ./data/ja-JP.json",
+    "get:en-GB": "node -e \"require('./scripts/fetch-api')('en-GB')\" && npm run format ./data/en-GB.json",
+    "get:fr-FR": "node -e \"require('./scripts/fetch-api')('fr-FR')\" && npm run format ./data/fr-FR.json",
+    "get:de-DE": "node -e \"require('./scripts/fetch-api')('de-DE')\" && npm run format ./data/de-DE.json",
+    "get:en-IN": "node -e \"require('./scripts/fetch-api')('en-IN')\" && npm run format ./data/en-IN.json",
+    "get:en-CA": "node -e \"require('./scripts/fetch-api')('en-CA')\" && npm run format ./data/en-CA.json",
+    "get:it-IT": "node -e \"require('./scripts/fetch-api')('it-IT')\" && npm run format ./data/it-IT.json"
   },
   "repository": {
     "type": "git",
@@ -30,5 +40,13 @@
   "bugs": {
     "url": "https://github.com/haiyewei/bingwlapi/issues"
   },
-  "homepage": "https://github.com/haiyewei/bingwlapi#readme"
+  "homepage": "https://github.com/haiyewei/bingwlapi#readme",
+  "dependencies": {
+    "@fontsource/roboto": "^5.2.9",
+    "@lit-labs/router": "^0.1.4",
+    "@material/web": "^2.4.1",
+    "cn-fontsource-fontquan-xin-yi-ji-xiang-song-regular": "^1.0.7",
+    "lit": "^3.3.1",
+    "typewriter-effect": "^2.22.0"
+  }
 }

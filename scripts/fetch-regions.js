@@ -1,6 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
-const fetchDataForLocale = require("./api");
+const fetchDataForLocale = require("./fetch-api");
 
 const dataDir = path.join(__dirname, "..", "data");
 const locales = [

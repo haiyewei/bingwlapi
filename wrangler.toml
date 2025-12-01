@@ -1,10 +1,16 @@
-name = "bingwlapi-scheduler"
-main = "index.js" 
+name = "bingwlapi"
+main = "src/worker.js"
 compatibility_date = "2025-12-01"
 
+[assets]
+directory = "dist"
+
+[build]
+command = "npm run build"
+
 [vars]
-# GITHUB_TOKEN = "null"
-# GITHUB_USERNAME = "YOUR_GITHUB_USERNAME"
+GITHUB_TOKEN = "YOUR_GITHUB_TOKEN"
+GITHUB_USERNAME = "YOUR_GITHUB_USERNAME"
 GITHUB_REPONAME = "bingwlapi"
 
 [triggers]

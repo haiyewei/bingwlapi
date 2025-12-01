@@ -19,14 +19,18 @@ export default {
       "16:05": ".github/workflows/update-zh-CN.yml",
     };
 
-    const timeKey = `${currentHour}:${String(currentMinute).padStart(2, '0')}`;
+    const timeKey = `${currentHour}:${String(currentMinute).padStart(2, "0")}`;
     const workflowFile = scheduleMap[timeKey];
 
     if (workflowFile) {
-      console.log(`Time matched: ${timeKey}. Triggering workflow: ${workflowFile}`);
+      console.log(
+        `Time matched: ${timeKey}. Triggering workflow: ${workflowFile}`,
+      );
       await this.triggerWorkflow(env, workflowFile, {});
     } else {
-      console.warn(`No workflow scheduled for the current time: ${timeKey}. This might happen if cron triggers and worker execution time are slightly misaligned.`);
+      console.warn(
+        `No workflow scheduled for the current time: ${timeKey}. This might happen if cron triggers and worker execution time are slightly misaligned.`,
+      );
     }
   },
 
@@ -34,15 +38,15 @@ export default {
     const url = `https://api.github.com/repos/${env.GITHUB_USERNAME}/${env.GITHUB_REPONAME}/actions/workflows/${workflowFile}/dispatches`;
 
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Accept': 'application/vnd.github+json',
-        'Authorization': `Bearer ${env.GITHUB_TOKEN}`,
-        'X-GitHub-Api-Version': '2022-11-28',
-        'User-Agent': 'cloudflare-worker-github-actions-trigger',
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "cloudflare-worker-github-actions-trigger",
       },
       body: JSON.stringify({
-        ref: 'main',
+        ref: "main",
         inputs,
       }),
     });
@@ -51,7 +55,10 @@ export default {
       console.log(`Successfully triggered workflow: ${workflowFile}`);
     } else {
       const errorText = await response.text();
-      console.error(`Failed to trigger workflow ${workflowFile}: ${response.status} ${response.statusText}`, errorText);
+      console.error(
+        `Failed to trigger workflow ${workflowFile}: ${response.status} ${response.statusText}`,
+        errorText,
+      );
     }
-  }
+  },
 };

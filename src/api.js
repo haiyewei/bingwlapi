@@ -131,8 +131,8 @@ async function handleRequest(context) {
   }
 }
 
-export async function onRequest(context) {
-  const response = await handleRequest(context);
+export async function handleApiRequest(request) {
+  const response = await handleRequest({ request });
   // Apply CORS headers to the response
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Max-Age", "86400");
@@ -140,7 +140,7 @@ export async function onRequest(context) {
   return response;
 }
 
-export async function onRequestOptions(context) {
+export async function handleApiOptions() {
   // Handle CORS preflight requests
   return new Response(null, {
     status: 204,
