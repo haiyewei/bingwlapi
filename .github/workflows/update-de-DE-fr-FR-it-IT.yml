@@ -2,6 +2,8 @@ name: Update de-DE-fr-FR-it-IT Data
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '5 23 * * *'
 
 jobs:
   update-data:

@@ -2,6 +2,8 @@ name: Update en-IN Data
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '35 18 * * *'
 
 jobs:
   update-data:
