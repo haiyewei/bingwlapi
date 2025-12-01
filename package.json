@@ -10,7 +10,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "vite:build": "vite build",
+    "build": "npm run vite:build && npm run worker:deploy",
     "preview": "vite preview",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy --config wrangler.toml",
