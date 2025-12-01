@@ -4,7 +4,7 @@
   "description": "This is an API for retrieving Bing's daily wallpaper information. You can customize the returned data by providing different URL query parameters.",
   "main": "index.js",
   "devDependencies": {
-    "prettier": "3.6.2"
+    "prettier": "3.7.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
