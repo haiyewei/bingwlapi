@@ -3,6 +3,7 @@ async function triggerWorkflowDispatch(owner, repo, workflow_id, token) {
   console.log(`Triggering workflow dispatch for: ${workflow_id}`);
 
   try {
+    console.log(`Requesting API URL: ${url}`);
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -15,14 +16,17 @@ async function triggerWorkflowDispatch(owner, repo, workflow_id, token) {
       }),
     });
 
-    if (response.ok) {
-      console.log(
-        `Successfully triggered workflow ${workflow_id}. Status: ${response.status}`,
+    const responseBody = await response.text();
+    console.log(`Response status: ${response.status}`);
+    console.log(`Response body: ${responseBody}`);
+
+    if (!response.ok) {
+      console.error(
+        `Failed to trigger workflow ${workflow_id}. Status: ${response.status}. Body: ${responseBody}`,
       );
     } else {
-      const errorText = await response.text();
-      console.error(
-        `Failed to trigger workflow ${workflow_id}. Status: ${response.status}. Body: ${errorText}`,
+      console.log(
+        `Successfully triggered workflow ${workflow_id}. Status: ${response.status}`,
       );
     }
   } catch (error) {
@@ -43,53 +47,43 @@ export default {
       return;
     }
 
-    const scheduledTime = new Date(event.scheduledTime);
-    const hour = scheduledTime.getUTCHours();
-    const minutes = scheduledTime.getUTCMinutes();
-
     let workflow_id = null;
 
-    if (minutes === 5) {
-      switch (hour) {
-        case 0:
-          workflow_id = "update-en-GB.yml";
-          break;
-        case 5:
-          workflow_id = "update-en-US-en-CA.yml";
-          break;
-        case 15:
-          workflow_id = "update-ja-JP.yml";
-          break;
-        case 16:
-          workflow_id = "update-zh-CN.yml";
-          break;
-        case 23:
-          workflow_id = "update-de-DE-fr-FR-it-IT.yml";
-          break;
-      }
-    } else if (hour === 18 && minutes === 35) {
-      workflow_id = "update-en-IN.yml";
+    switch (event.cron) {
+      case "5 0 * * *":
+        workflow_id = "update-en-GB.yml";
+        break;
+      case "5 5 * * *":
+        workflow_id = "update-en-US-en-CA.yml";
+        break;
+      case "5 15 * * *":
+        workflow_id = "update-ja-JP.yml";
+        break;
+      case "5 16 * * *":
+        workflow_id = "update-zh-CN.yml";
+        break;
+      case "5 23 * * *":
+        workflow_id = "update-de-DE-fr-FR-it-IT.yml";
+        break;
+      case "35 18 * * *":
+        workflow_id = "update-en-IN.yml";
+        break;
+      default:
+        console.log("No matching cron schedule");
+        break;
     }
 
-    if (!workflow_id) {
-      console.log(
-        `No workflows to trigger at ${hour}:${String(minutes).padStart(
-          2,
-          "0",
-        )} UTC.`,
+    if (workflow_id) {
+      console.log(`Triggering workflow: ${workflow_id}`);
+      ctx.waitUntil(
+        triggerWorkflowDispatch(
+          GITHUB_OWNER,
+          GITHUB_REPO,
+          workflow_id,
+          GITHUB_TOKEN,
+        ),
       );
-      return;
     }
-
-    console.log(`Triggering workflow: ${workflow_id}`);
-
-    ctx.waitUntil(
-      triggerWorkflowDispatch(
-        GITHUB_OWNER,
-        GITHUB_REPO,
-        workflow_id,
-        GITHUB_TOKEN,
-      ),
-    );
+    console.log("cron processed");
   },
 };
