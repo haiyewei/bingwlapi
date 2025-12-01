@@ -1,6 +1,5 @@
 name: Update ja-JP Data
 
-
 on:
   workflow_dispatch:
 

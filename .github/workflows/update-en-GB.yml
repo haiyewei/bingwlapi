@@ -1,6 +1,5 @@
 name: Update en-GB Data
 
-
 on:
   workflow_dispatch:
 

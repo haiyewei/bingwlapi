@@ -1,6 +1,5 @@
 name: Update de-DE-fr-FR-it-IT Data
 
-
 on:
   workflow_dispatch:
 

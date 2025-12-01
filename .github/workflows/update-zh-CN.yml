@@ -1,6 +1,5 @@
 name: Update zh-CN Data
 
-
 on:
   workflow_dispatch:
 
