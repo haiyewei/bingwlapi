@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vite",
     "vite:build": "vite build",
-    "build": "npm run vite:build && npm run worker:deploy",
+    "build": "npm run vite:build",
     "preview": "vite preview",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy --config wrangler.toml",
