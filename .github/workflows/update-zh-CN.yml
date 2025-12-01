@@ -2,8 +2,6 @@ name: Update zh-CN Data
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '5 16 * * *'
 
 jobs:
   update-data:
