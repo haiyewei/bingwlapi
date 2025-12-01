@@ -1,3 +1,4 @@
+pages_build_output_dir = "."
 name = "bingwlapi-scheduler"
 main = "worker/index.js" 
 
