@@ -10,7 +10,7 @@ command = "npm run build"
 
 [vars]
 # GITHUB_TOKEN = "YOUR_GITHUB_TOKEN"
-# GITHUB_USERNAME = "YOUR_GITHUB_USERNAME"
+GITHUB_USERNAME = "haiyewei"
 GITHUB_REPONAME = "bingwlapi"
 
 [triggers]
