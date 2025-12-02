@@ -11,12 +11,12 @@ export default {
 
     // 定义调度映射表：{ "小时:分钟": "工作流文件名" }
     const scheduleMap = {
-      "23:01": ".github/workflows/update-de-DE-fr-FR-it-IT.yml",
-      "0:01": ".github/workflows/update-en-GB.yml",
-      "18:31": ".github/workflows/update-en-IN.yml",
-      "5:01": ".github/workflows/update-en-US-en-CA.yml",
-      "15:01": ".github/workflows/update-ja-JP.yml",
-      "16:01": ".github/workflows/update-zh-CN.yml",
+      "23:01": "update-de-DE-fr-FR-it-IT.yml",
+      "0:01": "update-en-GB.yml",
+      "18:31": "update-en-IN.yml",
+      "5:01": "update-en-US-en-CA.yml",
+      "15:01": "update-ja-JP.yml",
+      "16:01": "update-zh-CN.yml",
     };
 
     const timeKey = `${currentHour}:${String(currentMinute).padStart(2, "0")}`;
