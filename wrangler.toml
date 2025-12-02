@@ -14,7 +14,7 @@ command = "npm run build"
 GITHUB_REPONAME = "bingwlapi"
 
 [triggers]
-crons = ["35 18 * * *", "1 0,5,15,16,23 * * *"]
+crons = ["31 18 * * *", "1 0,5,15,16,23 * * *"]
 
 [observability]
 enabled = false
