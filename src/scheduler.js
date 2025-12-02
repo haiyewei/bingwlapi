@@ -9,14 +9,14 @@ export default {
     const currentMinute = now.getUTCMinutes();
     const currentHour = now.getUTCHours();
 
-    // 定义调度映射表：{ "小时:分钟": "工作流文件名" }
+    // 定义调度映射表：{ "UTC 时间": "工作流文件名" }
     const scheduleMap = {
-      "23:01": "update-de-DE-fr-FR-it-IT.yml",
-      "0:01": "update-en-GB.yml",
-      "18:31": "update-en-IN.yml",
-      "5:01": "update-en-US-en-CA.yml",
-      "15:01": "update-ja-JP.yml",
-      "16:01": "update-zh-CN.yml",
+      "23:01": "update-de-DE-fr-FR-it-IT.yml", // UTC 23:01 = GMT+8 07:01 (次日)
+      "0:01": "update-en-GB.yml", // UTC 00:01 = GMT+8 08:01
+      "18:31": "update-en-IN.yml", // UTC 18:31 = GMT+8 02:31 (次日)
+      "5:01": "update-en-US-en-CA.yml", // UTC 05:01 = GMT+8 13:01
+      "15:01": "update-ja-JP.yml", // UTC 15:01 = GMT+8 23:01
+      "16:01": "update-zh-CN.yml", // UTC 16:01 = GMT+8 00:01 (次日)
     };
 
     const timeKey = `${currentHour}:${String(currentMinute).padStart(2, "0")}`;
