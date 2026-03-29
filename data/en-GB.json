@@ -1,6 +1,23 @@
 {
   "images": [
     {
+      "startdate": "20260329",
+      "fullstartdate": "202603290000",
+      "enddate": "20260329",
+      "url": "/th?id=OHR.BSTStarts2026_EN-GB5752947353_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+      "urlbase": "/th?id=OHR.BSTStarts2026_EN-GB5752947353",
+      "copyright": "Liberty Clock, London, England (© Dukas/Universal Images Group/Getty Images)",
+      "copyrightlink": "https://www.bing.com/search?q=British+Summer+Time+starts&form=hpcapt&filters=HpDate%3a%2220260329_0000%22",
+      "title": "Tick tock, light o'clock",
+      "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20260329_BSTStarts2026%22&FORM=HPQUIZ",
+      "wp": true,
+      "hsh": "a160d5d2e37a62b86f51cf589faf587a",
+      "drk": 1,
+      "top": 1,
+      "bot": 1,
+      "hs": []
+    },
+    {
       "startdate": "20260328",
       "fullstartdate": "202603280000",
       "enddate": "20260329",
